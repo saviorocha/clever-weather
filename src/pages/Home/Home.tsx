@@ -7,14 +7,10 @@ import Contents from "./Contents/Contents";
 import { Dashboard } from "../Dashboard/Dashboard";
 import { useWeatherContext } from "../../contexts/Weather";
 import { Location, SearchBar } from "../../components";
+import { useCurrentWeatherContext } from "../../contexts/CurrentWeather";
 
 const Home: React.FC = () => {
   const [latLng, setLatLng] = useState<LatLng | null>(null);
-  const { currentWeather } = useWeatherContext();
-
-  useEffect(() => {
-    console.log(currentWeather);
-  }, []);
 
   return (
     <>
