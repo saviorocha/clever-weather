@@ -5,15 +5,17 @@ import { BackgroundImage } from "./styles";
 import { LatLng } from "../../interfaces/LatLng";
 import Contents from "./Contents/Contents";
 import { Dashboard } from "../Dashboard/Dashboard";
-import { WeatherContext } from "../../components/WeatherContext";
+import { useWeatherContext } from "../../contexts/Weather";
+import { Location, SearchBar } from "../../components";
 
 const Home: React.FC = () => {
   const [latLng, setLatLng] = useState<LatLng | null>(null);
-  const msg = useContext(WeatherContext);
+  const { currentWeather } = useWeatherContext();
 
   useEffect(() => {
-    console.log(msg);
+    console.log(currentWeather);
   }, []);
+
   return (
     <>
       <BackgroundImage>

@@ -8,6 +8,11 @@ const getWindowDimensions = () => {
   };
 };
 
+/**
+ * Hook copiado friamente da internet por um cara que eu não conheço o nome boa sorte
+ * @author Sávio de Melo
+ **/
+
 export const useWindowDimensions = () => {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()

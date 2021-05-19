@@ -12,9 +12,12 @@ import { AiOutlineHome } from "react-icons/ai";
 import { Container, Header, Table } from "./styles";
 import { Waves } from "./styles";
 import { useHistory } from "react-router";
+import { useWeatherContext } from "../../../contexts/Weather";
 // import Waves from "../../../assets/Vector.js";
 
 export const WeekDetails: React.FC = () => {
+  const { weeklyWeather, setWeeklyWeather } = useWeatherContext();
+
   return (
     <Container>
       <Waves xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
