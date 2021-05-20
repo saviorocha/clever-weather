@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.section`
   width: 100%;
-  height: 100vh;
+  height: 100%;
 
   border: 6px solid #2f237c;
   box-sizing: border-box;
@@ -23,6 +23,7 @@ export const Waves = styled.svg`
 
 export const Header = styled.header`
   position: relative;
+
   margin: 10px;
   font-family: "Roboto", sans-serif;
 
@@ -49,6 +50,8 @@ export const Header = styled.header`
     }
   }
   div.titulo {
+    margin-top: 25px;
+
     h1 {
       display: flex;
       flex-direction: row;
@@ -68,9 +71,9 @@ export const Header = styled.header`
     color: #c5c5c5;
   }
 
-  span:nth-of-type(2) {
+  /* span:nth-of-type(2) {
     color: #e1e1e1;
-  }
+  } */
 
   hr {
     margin-top: 5px;
@@ -78,6 +81,7 @@ export const Header = styled.header`
   }
 `;
 export const Table = styled.table`
+  position: relative;
   border-collapse: collapse; /* https://stackoverflow.com/questions/18679020/border-around-tr-element-doesnt-show */
   margin: 0 auto;
   font-weight: 400;

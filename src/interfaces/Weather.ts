@@ -21,8 +21,14 @@ export interface CurrentWeather {
 
 export interface DailyWeather {
   // temperatura, precipitação, humidade
+  current: {
+    dt: number;
+    temp: number;
+  };
+
   hourly: [
     {
+      dt: number;
       temp: number;
       pop: number;
       humidity: number;

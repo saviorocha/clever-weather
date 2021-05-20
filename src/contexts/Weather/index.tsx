@@ -16,7 +16,7 @@ interface WheaterContextInterface {
   setCurrentWeather: Dispatch<SetStateAction<CurrentWeather>>;
 
   dailyWeather: DailyWeather;
-  setDailyWeather: Dispatch<SetStateAction<DailyWeather>>;
+  setDailyWeather: React.Dispatch<React.SetStateAction<DailyWeather>>;
 
   weeklyWeather: WeeklyWeather;
   setWeeklyWeather: Dispatch<SetStateAction<WeeklyWeather>>;
