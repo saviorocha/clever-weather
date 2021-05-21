@@ -3,8 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { BackgroundImage } from "./styles";
 
 import { LatLng } from "../../interfaces/LatLng";
-import Contents from "./Contents/Contents";
-import { Dashboard } from "../Dashboard/Dashboard";
+import Contents from "./Contents";
+import { Dashboard } from "../Dashboard";
 import { useWeatherContext } from "../../contexts/Weather";
 import { Location, SearchBar } from "../../components";
 import { useCurrentWeatherContext } from "../../contexts/CurrentWeather";

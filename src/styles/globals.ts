@@ -20,4 +20,10 @@ export default createGlobalStyle`
     #root {
         margin: 0 auto;
     }
+
+
+    ::selection {
+    color: #2a1a70;
+    background: #fff;
+    }
 `;

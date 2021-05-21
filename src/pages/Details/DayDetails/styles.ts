@@ -68,7 +68,7 @@ export const Header = styled.header`
   }
 
   span:first-of-type {
-    color: #c5c5c5;
+    color: #e5e5e5;
   }
 
   /* span:nth-of-type(2) {

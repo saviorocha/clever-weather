@@ -15,6 +15,8 @@ import { Waves } from "./styles";
 import { useDailyWeatherContext } from "../../../contexts";
 
 import NumberFormat from "react-number-format";
+import { useHistory } from "react-router";
+import { epochToDay, epochToHour } from "../../../utils";
 
 // import openweatherapi from "../../../services/openweathermapapi";
 // import Waves from "../../../assets/Vector.js";
@@ -22,21 +24,17 @@ import NumberFormat from "react-number-format";
 // https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 export const DayDetails: React.FC = () => {
   const { dailyWeather, isLoading } = useDailyWeatherContext();
+  const history = useHistory();
   // const openWeatherKey = process.env.REACT_APP_WEATHER_API_KEY;
 
-  function epochToDate(epochNum: number): string {
-    let myDate: Date = new Date(epochNum * 1000);
-    if (myDate.getHours() <= 9 && myDate.getHours() >= 0) {
-      return "0" + myDate.getHours() + ":00";
-    } else {
-      return myDate.getHours() + ":00";
-    }
-  }
-
   useEffect(() => {
-    !isLoading && console.log(dailyWeather);
-    // epochToDate();
+    // !isLoading && epochToDay(dailyWeather.current.dt);
+    // console.log(dailyWeather);
   }, []);
+
+  const handleIconClick = useCallback(() => {
+    history.push("/");
+  }, [history]);
 
   return isLoading ? (
     <h1>Carregando</h1>
@@ -54,10 +52,10 @@ export const DayDetails: React.FC = () => {
       <Header>
         <div className="topo">
           <div className="icone">
-            <CornerDownLeft />
+            <CornerDownLeft onClick={handleIconClick} />
           </div>
           <div className="icone">
-            <AiOutlineHome onClick={() => {}} />
+            <AiOutlineHome onClick={handleIconClick} />
           </div>
         </div>
         <div className="titulo">
@@ -74,7 +72,7 @@ export const DayDetails: React.FC = () => {
           </h2>
           <h1>
             <ChevronLeft />
-            Quarta-feira, 12 de Maio
+            {epochToDay(dailyWeather.current.dt)}, 12 de Maio
             <ChevronRight />
           </h1>
         </div>
@@ -83,7 +81,7 @@ export const DayDetails: React.FC = () => {
       <Table>
         {dailyWeather.hourly.map((weather) => (
           <tr>
-            <td>{epochToDate(weather.dt)}</td>
+            <td>{epochToHour(weather.dt)}</td>
             <td>
               <Moon />
               <NumberFormat
