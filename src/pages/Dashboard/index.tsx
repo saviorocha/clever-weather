@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Waves } from "./styles";
-import openweatherapi from "../../services/openweathermapapi";
+import openweatherapi from "../../services/openweather";
+import { useHistory } from "react-router";
 
 // https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=minutely&appid={API key}
 export const Dashboard: React.FC = () => {
   const openWeatherKey = process.env.REACT_APP_WEATHER_API_KEY;
-
-  const [weather, setWeather] = useState("");
 
   const getWeather = () => {
     // openweatherapi
@@ -15,7 +14,7 @@ export const Dashboard: React.FC = () => {
     //   )
     //   .then((res) => {});
   };
-
+  const history = useHistory();
   return (
     <>
       <Waves xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -26,6 +25,13 @@ export const Dashboard: React.FC = () => {
           data-darkreader-inline-fill=""
         ></path>
       </Waves>
+      <button
+        onClick={() => {
+          history.push("/detalhes/dia");
+        }}
+      >
+        DayDetails
+      </button>
     </>
   );
 };
