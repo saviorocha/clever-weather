@@ -98,6 +98,7 @@ export const Table = styled.table`
     }
   }
   td {
+    /* max-width: 100px; */
     padding: 10px 12px;
   }
 

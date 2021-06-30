@@ -1,4 +1,5 @@
-import react, { useCallback, useEffect, useState } from "react";
+import react, { useCallback, useEffect, useMemo, useState } from "react";
+import { useTable, usePagination } from 'react-table';
 
 import {
   Moon,
@@ -12,29 +13,38 @@ import { BiDroplet } from "react-icons/bi";
 import { AiOutlineHome } from "react-icons/ai";
 import { Container, Header, Table } from "./styles";
 import { Waves } from "./styles";
-import { useDailyWeatherContext } from "../../../contexts";
+import { useDailyWeatherContext, useMapQuestContext } from "../../../contexts";
 
 import NumberFormat from "react-number-format";
 import { useHistory } from "react-router";
-import { epochToDay, epochToHour } from "../../../utils";
+import { 
+  epochToDay, epochToHour, epochToMonth,
+  paginateDailyWeather, paginateMapQuest
+} from "../../../utils";
 
+import { ColumnsInterface, DataInterface } from "../../../interfaces/ReactTable";
 // import openweatherapi from "../../../services/openweathermapapi";
-// import Waves from "../../../assets/Vector.js";
+// import Waves from "../../../assets/Vector.js"
+
 
 // https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 export const DayDetails: React.FC = () => {
   const { dailyWeather, isLoading } = useDailyWeatherContext();
+  const { mapQuest } = useMapQuestContext();
   const history = useHistory();
   // const openWeatherKey = process.env.REACT_APP_WEATHER_API_KEY;
-
-  useEffect(() => {
-    // !isLoading && epochToDay(dailyWeather.current.dt);
-    // console.log(dailyWeather);
-  }, []);
 
   const handleIconClick = useCallback(() => {
     history.push("/");
   }, [history]);
+
+  useEffect(() => {
+    // !isLoading && console.log(epochToMonth(dailyWeather.current.dt));
+    // console.log('mapQuest: ', mapQuest);
+    // console.log('dailyWeather: ', dailyWeather);
+    console.log(paginateDailyWeather(dailyWeather), paginateMapQuest(mapQuest));
+    
+  }, []);
 
   return isLoading ? (
     <h1>Carregando</h1>
@@ -60,7 +70,8 @@ export const DayDetails: React.FC = () => {
         </div>
         <div className="titulo">
           <h2>
-            Luziânia, Brasil -{" "}
+            {mapQuest.results[0].providedLocation.location},{" "}
+            {mapQuest.results[0].locations[0].adminArea1} -{" "}
             <span>
               <NumberFormat
                 value={dailyWeather.current.temp}
@@ -72,7 +83,8 @@ export const DayDetails: React.FC = () => {
           </h2>
           <h1>
             <ChevronLeft />
-            {epochToDay(dailyWeather.current.dt)}, 12 de Maio
+            {epochToDay(dailyWeather.current.dt)},{" "}
+            {epochToMonth(dailyWeather.current.dt)}
             <ChevronRight />
           </h1>
         </div>
@@ -91,12 +103,13 @@ export const DayDetails: React.FC = () => {
                 suffix="°C"
               />
             </td>
-
             <td>
               <GiHeavyRain />
               <NumberFormat
                 value={weather.pop}
+                decimalScale={2}
                 displayType={"text"}
+                fixedDecimalScale
                 suffix="%"
               />
             </td>
@@ -112,6 +125,7 @@ export const DayDetails: React.FC = () => {
           </tr>
         ))}
       </Table>
+      {/* <PaginatedTable columns={columns} data={data}/> */}
     </Container>
   );
 };
