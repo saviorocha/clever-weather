@@ -1,23 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { BackgroundImage } from "./styles";
 
 import { LatLng } from "../../interfaces/LatLng";
 import Contents from "./Contents";
 import { Dashboard } from "../Dashboard";
-import { useWeatherContext } from "../../contexts/Weather";
-import { Location, SearchBar } from "../../components";
-import { useCurrentWeatherContext } from "../../contexts/CurrentWeather";
+import { useMapQuestContext } from "../../contexts";
 
 const Home: React.FC = () => {
   const [latLng, setLatLng] = useState<LatLng | null>(null);
-
+  const { mapQuest } = useMapQuestContext();
   return (
     <>
       <BackgroundImage>
-        <Contents latLng={latLng} setLatLng={setLatLng} />
+        <Contents latLng={latLng} setLatLng={setLatLng}  />
       </BackgroundImage>
-      <Dashboard />
+      {mapQuest && <Dashboard />}
     </>
   );
 };
