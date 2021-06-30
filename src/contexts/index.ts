@@ -14,3 +14,5 @@ export {
   default as WeeklyWeatherProvider,
   useWeeklyWeatherContext,
 } from "./WeeklyWeather";
+
+export { default as MapQuestProvider, useMapQuestContext } from "./MapQuest";

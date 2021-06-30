@@ -32,7 +32,6 @@ const DailyWeatherProvider: React.FC = ({ children }) => {
 
 export function useDailyWeatherContext() {
   const context = useContext(DailyWeatherContext);
-
   return context;
 }
 
